@@ -18,14 +18,10 @@ public class SpawnManager : MonoBehaviour
     private float timeSinceLastSpawn;
     private float nextSpawnTime;
 
-    private float gameDuration = 20f;
     private float startFastSpawn = 13f;
     private float fastMinInterval = 0.5f;
     private float fastMaxInterval = 1.5f;
     private float gameTimer = 0f;
-
-    private Vector3 nextSpawnLocation;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,8 +34,6 @@ public class SpawnManager : MonoBehaviour
     {
         gameTimer += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
-
-        Debug.Log("Time elapsed: " + gameTimer);
 
         if (timeSinceLastSpawn >= nextSpawnTime)
         {

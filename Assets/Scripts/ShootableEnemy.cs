@@ -7,16 +7,16 @@ public class ShootableEnemy : MonoBehaviour
     public float moveSpeed = 2f;
 
     private Rigidbody rb;
-    private Renderer renderer;
+    private Renderer enemyRenderer;
     private Color originalColor;
 
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        enemyRenderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
-        originalColor = renderer.material.color;
+        originalColor = enemyRenderer.material.color;
     }
 
     void FixedUpdate()
@@ -40,9 +40,9 @@ public class ShootableEnemy : MonoBehaviour
 
     IEnumerator FlashWhite()
     {
-        renderer.material.color = Color.white;
+        enemyRenderer.material.color = Color.white;
         yield return flashDuration;
-        renderer.material.color = originalColor;
+        enemyRenderer.material.color = originalColor;
     }
 
     void Die()
