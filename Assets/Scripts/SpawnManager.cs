@@ -5,7 +5,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] spawnPrefabs;
     [SerializeField] private Transform targetToFace;
 
-    [SerializeField] private float minInterval = 2f;
+    [SerializeField] private float minInterval = 3f;
     [SerializeField] private float maxInterval = 5f;
 
     [SerializeField] private Vector3 leftZoneMin;
@@ -17,6 +17,12 @@ public class SpawnManager : MonoBehaviour
 
     private float timeSinceLastSpawn;
     private float nextSpawnTime;
+
+    private float gameDuration = 20f;
+    private float startFastSpawn = 13f;
+    private float fastMinInterval = 0.5f;
+    private float fastMaxInterval = 1.5f;
+    private float gameTimer = 0f;
 
     private Vector3 nextSpawnLocation;
 
@@ -30,14 +36,28 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameTimer += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
+
+        Debug.Log("Time elapsed: " + gameTimer);
 
         if (timeSinceLastSpawn >= nextSpawnTime)
         {
             SpawnEnemy();
             timeSinceLastSpawn = 0f;
-            nextSpawnTime = Random.Range(minInterval, maxInterval);
+            nextSpawnTime = GetNextSpawnInterval();
         }
+    }
+
+    private float GetNextSpawnInterval()
+    {
+        // gradually increase until startFastSpawn time, and then maintain fast spawn rate until end of game.
+        float gameProgress = Mathf.Clamp01(gameTimer / startFastSpawn);
+        
+        float currentMin = Mathf.Lerp(minInterval, fastMinInterval, gameProgress);
+        float currentMax = Mathf.Lerp(maxInterval, fastMaxInterval, gameProgress);
+
+        return Random.Range(currentMin, currentMax);
     }
 
     private void SpawnEnemy()
