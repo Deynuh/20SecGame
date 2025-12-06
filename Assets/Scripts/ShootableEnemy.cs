@@ -6,20 +6,24 @@ public class ShootableEnemy : MonoBehaviour
     public float health = 10f;
     public float moveSpeed = 2f;
 
-    private Renderer enemyRenderer;
+    private Rigidbody rb;
+    private Renderer renderer;
     private Color originalColor;
+
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     void Start()
     {
-        enemyRenderer = GetComponent<Renderer>();
-        originalColor = enemyRenderer.material.color;
+        renderer = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody>();
+        originalColor = renderer.material.color;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // move forward continuously
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime, Space.Self);
+        Vector3 newPosition = rb.position + transform.forward * moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(newPosition);
     }
 
     public void TakeDamage(float amount)
@@ -36,9 +40,9 @@ public class ShootableEnemy : MonoBehaviour
 
     IEnumerator FlashWhite()
     {
-        enemyRenderer.material.color = Color.white;
+        renderer.material.color = Color.white;
         yield return flashDuration;
-        enemyRenderer.material.color = originalColor;
+        renderer.material.color = originalColor;
     }
 
     void Die()
