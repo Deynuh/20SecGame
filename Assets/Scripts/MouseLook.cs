@@ -11,15 +11,6 @@ public class MouseLook : MonoBehaviour
     {
         // locks cursor to center of screen
         Cursor.lockState = CursorLockMode.Locked;
-
-        //initialize rotation values
-        currentVerticalRotation = transform.rotation.eulerAngles.x;
-        currentHorizontalRotation = transform.rotation.eulerAngles.y;
-
-        // if (currentVerticalRotation > 180f)
-        //     currentVerticalRotation -= 360f;
-        // if (currentHorizontalRotation > 180f)
-        //     currentHorizontalRotation -= 360f;
     }
 
     // Update is called once per frame
@@ -35,7 +26,7 @@ public class MouseLook : MonoBehaviour
 
         // clamp horizontal rotation
         currentHorizontalRotation += mouseX;
-        currentHorizontalRotation = Mathf.Clamp(currentHorizontalRotation, -180f, 0f);
+        currentHorizontalRotation = Mathf.Clamp(currentHorizontalRotation, -90f, 90f);
 
         // apply rotations to transform
         transform.rotation = Quaternion.Euler(currentVerticalRotation, currentHorizontalRotation, 0f);
