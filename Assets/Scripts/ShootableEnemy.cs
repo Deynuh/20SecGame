@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShootableEnemy : MonoBehaviour
 {
-    public float health = 10f;
+    public float health = 5f;
     public float moveSpeed = 2f;
 
     private Rigidbody rb;

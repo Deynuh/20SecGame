@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] private float minInterval = 3f;
     [SerializeField] private float maxInterval = 5f;
+    [SerializeField] private float fastMinInterval = 0.5f;
+    [SerializeField] private float fastMaxInterval = 1.5f;
 
     [SerializeField] private Vector3 leftZoneMin;
     [SerializeField] private Vector3 leftZoneMax;
@@ -17,10 +19,7 @@ public class SpawnManager : MonoBehaviour
 
     private float timeSinceLastSpawn;
     private float nextSpawnTime;
-
     private float startFastSpawn = 13f;
-    private float fastMinInterval = 0.5f;
-    private float fastMaxInterval = 1.5f;
     private float gameTimer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,7 +46,7 @@ public class SpawnManager : MonoBehaviour
     {
         // gradually increase until startFastSpawn time, and then maintain fast spawn rate until end of game.
         float gameProgress = Mathf.Clamp01(gameTimer / startFastSpawn);
-        
+
         float currentMin = Mathf.Lerp(minInterval, fastMinInterval, gameProgress);
         float currentMax = Mathf.Lerp(maxInterval, fastMaxInterval, gameProgress);
 
@@ -60,15 +59,15 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPos = GetSpawnLocation();
 
         GameObject enemy = Instantiate(spawnPrefabs[randomIndex], spawnPos, Quaternion.identity);
-    
+
         enemy.transform.LookAt(targetToFace);
     }
 
     private Vector3 GetSpawnLocation()
     {
         // Random.Range is inclusive of first number and exclusive of second number for int
-        int zoneIndex = Random.Range(0,3);
-        
+        int zoneIndex = Random.Range(0, 3);
+
         Vector3 min, max;
 
         switch (zoneIndex)
