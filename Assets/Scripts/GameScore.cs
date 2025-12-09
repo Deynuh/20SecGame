@@ -17,6 +17,7 @@ public class GameScore : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
+        score = 0;
         UpdateScoreUI();
     }
 
