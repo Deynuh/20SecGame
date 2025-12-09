@@ -1,20 +1,24 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI finalScoreText;
+
     private float gameDuration = 20f;
     private float timeRemaining;
     private TextMeshProUGUI timerText;
+    private bool isGameOver = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timerText = GetComponent<TextMeshProUGUI>();
         timeRemaining = gameDuration;
+        Time.timeScale = 1f; // ensures game is running
     }
 
-    // Update is called once per frame
     void Update()
     {
         timeRemaining -= Time.deltaTime;
@@ -22,9 +26,33 @@ public class GameTimer : MonoBehaviour
         if (timeRemaining < 0)
         {
             timeRemaining = 0f;
-            // insert game over logic here later!
+
+            if (!isGameOver)
+            {
+                isGameOver = true;
+                EndGame();
+            }
         }
 
         timerText.text = "Time left: " + timeRemaining.ToString("F2");
+    }
+
+    private void EndGame()
+    {
+        Time.timeScale = 0f; // freezes game
+
+        int finalScore = GameScore.Instance.GetScore();
+
+        finalScoreText.text = "Final Score: " + finalScore;
+        gameOverPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // unfreeze time
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

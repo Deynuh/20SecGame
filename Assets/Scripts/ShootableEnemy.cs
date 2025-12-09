@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ShootableEnemy : MonoBehaviour
 {
+    private GameObject target;
+
     public float health = 5f;
     public float moveSpeed = 2f;
 
@@ -12,11 +14,13 @@ public class ShootableEnemy : MonoBehaviour
 
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
+
     void Start()
     {
         enemyRenderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
         originalColor = enemyRenderer.material.color;
+        target = GameObject.FindWithTag("Target");
     }
 
     void FixedUpdate()
@@ -28,14 +32,28 @@ public class ShootableEnemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-
         StartCoroutine(FlashWhite());
+        health -= amount;
 
         if (health <= 0f)
         {
+            GameScore.Instance.AddScore(1);
             Die();
         }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == target)
+        {
+            DealDamage();
+            Die();
+        }
+    }
+
+    public void DealDamage()
+    {
+        StartCoroutine(FlashBlack());
+        GameScore.Instance.SubtractScore(2);
     }
 
     IEnumerator FlashWhite()
@@ -45,6 +63,14 @@ public class ShootableEnemy : MonoBehaviour
         enemyRenderer.material.color = originalColor;
     }
 
+    IEnumerator FlashBlack()
+    {
+        enemyRenderer.material.color = Color.black;
+        yield return flashDuration;
+        enemyRenderer.material.color = originalColor;
+    }
+
+    // eventually add a dying animation here
     void Die()
     {
         Destroy(gameObject);
