@@ -9,7 +9,7 @@ public class ShootableEnemy : MonoBehaviour
     public float moveSpeed = 2f;
 
     private Rigidbody rb;
-    private Renderer enemyRenderer;
+    // private Renderer enemyRenderer;
     private Color originalColor;
 
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
@@ -17,9 +17,9 @@ public class ShootableEnemy : MonoBehaviour
 
     void Start()
     {
-        enemyRenderer = GetComponent<Renderer>();
+        // enemyRenderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
-        originalColor = enemyRenderer.material.color;
+        // originalColor = enemyRenderer.material.color;
         target = GameObject.FindWithTag("Target");
     }
 
@@ -32,7 +32,7 @@ public class ShootableEnemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        StartCoroutine(FlashWhite());
+        // StartCoroutine(FlashWhite());
         health -= amount;
 
         if (health <= 0f)
@@ -52,23 +52,23 @@ public class ShootableEnemy : MonoBehaviour
 
     public void DealDamage()
     {
-        StartCoroutine(FlashBlack());
+        // StartCoroutine(FlashBlack());
         GameScore.Instance.SubtractScore(2);
     }
 
-    IEnumerator FlashWhite()
-    {
-        enemyRenderer.material.color = Color.white;
-        yield return flashDuration;
-        enemyRenderer.material.color = originalColor;
-    }
+    // IEnumerator FlashWhite()
+    // {
+    //     enemyRenderer.material.color = Color.white;
+    //     yield return flashDuration;
+    //     enemyRenderer.material.color = originalColor;
+    // }
 
-    IEnumerator FlashBlack()
-    {
-        enemyRenderer.material.color = Color.black;
-        yield return flashDuration;
-        enemyRenderer.material.color = originalColor;
-    }
+    // IEnumerator FlashBlack()
+    // {
+    //     enemyRenderer.material.color = Color.black;
+    //     yield return flashDuration;
+    //     enemyRenderer.material.color = originalColor;
+    // }
 
     // eventually add a dying animation here
     void Die()

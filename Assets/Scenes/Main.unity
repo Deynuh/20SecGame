@@ -1958,18 +1958,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPrefabs:
-  - {fileID: 141701212973491921, guid: ea8110832032fc443bfc9837c932ab17, type: 3}
+  - {fileID: 498253721416304272, guid: f6ab88624626d1249bd73bcb4a1c7d59, type: 3}
+  - {fileID: 8406845055882037674, guid: 36621476210b2c649b8aeea96b7c2587, type: 3}
+  - {fileID: 6007180743642840513, guid: 5a796ed211b2cec468ecadad11acb207, type: 3}
+  - {fileID: 2602231374797837610, guid: 855c90c429434444fbe3ca2b5507ab04, type: 3}
+  - {fileID: 5446477390807014373, guid: b713585f24f940f4eadb10319818ef40, type: 3}
+  - {fileID: 2676405798547930095, guid: 4b5b08dfd84e3c342b10a4e2ed977d48, type: 3}
+  - {fileID: 958745142335686053, guid: 95aa05ec0ea0a884ab92946b57d2c7b4, type: 3}
   targetToFace: {fileID: 1990523893}
   minInterval: 1.5
   maxInterval: 2
   fastMinInterval: 0.2
   fastMaxInterval: 0.8
   leftZoneMin: {x: -4, y: -0.5, z: 2}
-  leftZoneMax: {x: -3.5, y: 1, z: 9.5}
+  leftZoneMax: {x: -3.5, y: 0.5, z: 9.5}
   rightZoneMin: {x: 4, y: -0.5, z: 2}
-  rightZoneMax: {x: 3.5, y: 1, z: 9.5}
+  rightZoneMax: {x: 3.5, y: 0.5, z: 9.5}
   middleZoneMin: {x: -4, y: -0.5, z: 7}
-  middleZoneMax: {x: 4, y: 1, z: 9.5}
+  middleZoneMax: {x: 4, y: 0.5, z: 9.5}
 --- !u!1 &869257066
 GameObject:
   m_ObjectHideFlags: 0
