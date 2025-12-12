@@ -7,6 +7,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private AudioSource ambientSound;
+    [SerializeField] private AudioSource heartbeatSound;
 
     private float gameDuration = 20f;
     private float timeRemaining;
@@ -23,6 +24,8 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         timeRemaining -= Time.deltaTime;
+        // gradually increase heartbeat volume
+        heartbeatSound.volume = Mathf.Clamp01((gameDuration - timeRemaining) / gameDuration);
 
         if (timeRemaining < 0)
         {
@@ -42,6 +45,7 @@ public class GameTimer : MonoBehaviour
     {
         Time.timeScale = 0f; // freezes game
         ambientSound.Stop(); // stops ambient sound
+        heartbeatSound.Stop(); // stops heartbeat sound
 
         int finalScore = GameScore.Instance.GetScore();
 
