@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ShootableEnemy : MonoBehaviour
 {
+    private AudioSource audioSource;
     private GameObject target;
 
     public float health = 5f;
@@ -17,6 +18,7 @@ public class ShootableEnemy : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         // enemyRenderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
         // originalColor = enemyRenderer.material.color;
@@ -73,6 +75,7 @@ public class ShootableEnemy : MonoBehaviour
     // eventually add a dying animation here
     void Die()
     {
+        AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, 0.2f);
         Destroy(gameObject);
     }
 }

@@ -6,6 +6,7 @@ public class GameTimer : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private AudioSource ambientSound;
 
     private float gameDuration = 20f;
     private float timeRemaining;
@@ -40,6 +41,7 @@ public class GameTimer : MonoBehaviour
     private void EndGame()
     {
         Time.timeScale = 0f; // freezes game
+        ambientSound.Stop(); // stops ambient sound
 
         int finalScore = GameScore.Instance.GetScore();
 
