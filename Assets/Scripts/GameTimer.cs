@@ -8,6 +8,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private AudioSource ambientSound;
     [SerializeField] private AudioSource heartbeatSound;
+    private AudioSource audioSource;
 
     private float gameDuration = 20f;
     private float timeRemaining;
@@ -19,6 +20,7 @@ public class GameTimer : MonoBehaviour
         timerText = GetComponent<TextMeshProUGUI>();
         timeRemaining = gameDuration;
         Time.timeScale = 1f; // ensures game is running
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -46,6 +48,7 @@ public class GameTimer : MonoBehaviour
         Time.timeScale = 0f; // freezes game
         ambientSound.Stop(); // stops ambient sound
         heartbeatSound.Stop(); // stops heartbeat sound
+        audioSource.Play(); // plays game over sound
 
         int finalScore = GameScore.Instance.GetScore();
 
