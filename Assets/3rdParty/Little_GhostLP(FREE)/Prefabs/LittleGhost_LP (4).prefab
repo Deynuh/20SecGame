@@ -757,6 +757,7 @@ MonoBehaviour:
   health: 5
   moveSpeed: 2
   deathSmokePrefab: {fileID: 8598806350194989188, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+  scorePopupPrefab: {fileID: 4217671971125844410, guid: b098b42f37093cd4c8f27ec51b8d322f, type: 3}
 --- !u!82 &292955155769401039
 AudioSource:
   m_ObjectHideFlags: 0

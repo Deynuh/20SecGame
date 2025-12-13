@@ -3,26 +3,21 @@ using System.Collections;
 
 public class ShootableEnemy : MonoBehaviour
 {
-    private AudioSource audioSource;
-    private GameObject target;
-
     public float health = 5f;
     public float moveSpeed = 2f;
     public GameObject deathSmokePrefab;
+    public GameObject scorePopupPrefab;
+
+    private AudioSource audioSource;
+    private GameObject target;
 
     private Rigidbody rb;
-    // private Renderer enemyRenderer;
-    private Color originalColor;
-
-    private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        // enemyRenderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody>();
-        // originalColor = enemyRenderer.material.color;
         target = GameObject.FindWithTag("Target");
     }
 
@@ -35,12 +30,12 @@ public class ShootableEnemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        // StartCoroutine(FlashWhite());
         health -= amount;
 
         if (health <= 0f)
         {
             GameScore.Instance.AddScore(1);
+            ShowScorePopup("+1", Color.green);
             Die();
         }
     }
@@ -55,25 +50,18 @@ public class ShootableEnemy : MonoBehaviour
 
     public void DealDamage()
     {
-        // StartCoroutine(FlashBlack());
         GameScore.Instance.SubtractScore(2);
+        ShowScorePopup("-2", Color.red);
     }
 
-    // IEnumerator FlashWhite()
-    // {
-    //     enemyRenderer.material.color = Color.white;
-    //     yield return flashDuration;
-    //     enemyRenderer.material.color = originalColor;
-    // }
+    void ShowScorePopup(string text, Color color)
+    {
+        Vector3 popupPosition = transform.position + Vector3.up * 1f;
+        GameObject popup = Instantiate(scorePopupPrefab, popupPosition, Quaternion.identity);
+        ScorePopup popupScript = popup.GetComponent<ScorePopup>();
+        popupScript.Setup(text, color, target.transform);
+    }
 
-    // IEnumerator FlashBlack()
-    // {
-    //     enemyRenderer.material.color = Color.black;
-    //     yield return flashDuration;
-    //     enemyRenderer.material.color = originalColor;
-    // }
-
-    // eventually add a dying animation here
     void Die()
     {
         Vector3 smokePosition = transform.position + Vector3.up * 1f;
