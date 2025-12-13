@@ -8,6 +8,7 @@ public class ShootableEnemy : MonoBehaviour
 
     public float health = 5f;
     public float moveSpeed = 2f;
+    public GameObject deathSmokePrefab;
 
     private Rigidbody rb;
     // private Renderer enemyRenderer;
@@ -75,6 +76,8 @@ public class ShootableEnemy : MonoBehaviour
     // eventually add a dying animation here
     void Die()
     {
+        Vector3 smokePosition = transform.position + Vector3.up * 1f;
+        Instantiate(deathSmokePrefab, smokePosition, Quaternion.identity);
         AudioSource.PlayClipAtPoint(audioSource.clip, transform.position, 0.2f);
         Destroy(gameObject);
     }

@@ -851,6 +851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   moveSpeed: 2
+  deathSmokePrefab: {fileID: 8598806350194989188, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
 --- !u!82 &401301767765021421
 AudioSource:
   m_ObjectHideFlags: 0

@@ -2282,6 +2282,71 @@ MonoBehaviour:
   rightZoneMax: {x: 4, y: 0.5, z: 9.5}
   middleZoneMin: {x: -4, y: -0.5, z: 7}
   middleZoneMax: {x: 4, y: 0.5, z: 7.5}
+--- !u!1001 &620794419
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.060596943
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0109082
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.0933857
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458711161230439918, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8598806350194989188, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: m_Name
+      value: DeathSmoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757727175176499002, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8757727175176499002, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ebc13d282417b84d8beec84b7b81186, type: 3}
 --- !u!1001 &834973004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6528,3 +6593,4 @@ SceneRoots:
   - {fileID: 1157279675}
   - {fileID: 1974788506}
   - {fileID: 186436457}
+  - {fileID: 620794419}
