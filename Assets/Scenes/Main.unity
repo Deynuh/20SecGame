@@ -322,10 +322,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 16e141f3c776d9d49821122238434d80, type: 3}
+  m_Resource: {fileID: 8300000, guid: c9ae0952e0d6cec439ba5356d11340fc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
-  m_Pitch: 1
+  m_Volume: 0.155
+  m_Pitch: 0.75
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -2272,10 +2272,10 @@ MonoBehaviour:
   - {fileID: 2676405798547930095, guid: 4b5b08dfd84e3c342b10a4e2ed977d48, type: 3}
   - {fileID: 958745142335686053, guid: 95aa05ec0ea0a884ab92946b57d2c7b4, type: 3}
   targetToFace: {fileID: 1990523893}
-  minInterval: 1.5
-  maxInterval: 2
-  fastMinInterval: 0.2
-  fastMaxInterval: 0.8
+  minInterval: 1
+  maxInterval: 1.5
+  fastMinInterval: 0.1
+  fastMaxInterval: 0.5
   leftZoneMin: {x: -4, y: -0.5, z: 2}
   leftZoneMax: {x: -3.5, y: 0.5, z: 9.5}
   rightZoneMin: {x: 3.5, y: -0.5, z: 2}
@@ -3539,7 +3539,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d25383413a888164fb4d8444ceea3274, type: 3}
+  m_Resource: {fileID: 8300000, guid: 7f79e50f26b8d934f915229e45e7ca0c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -4950,7 +4950,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 88cd902154e1e5c41ad75bb2fe16b79a, type: 3}
+  m_Resource: {fileID: 8300000, guid: aa64527db7aa22242b3bbbb241f3802f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
