@@ -13,7 +13,7 @@ public class MoveShootLine : MonoBehaviour
         transform.position += direction * step;
 
         // destroy if reaches/passes target position
-        if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
+        if (Vector3.Distance(transform.position, targetPosition) <= 0.05f)
         {
             Destroy(gameObject);
         }
