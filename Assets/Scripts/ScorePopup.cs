@@ -19,7 +19,8 @@ public class ScorePopup : MonoBehaviour
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
         text.text = scoreText;
-        text.color = color;
+        Color transparentColor = new Color(color.r, color.g, color.b, 0.6f);
+        text.color = transparentColor;
         targetToFace = target;
 
         StartCoroutine(AnimatePopup());

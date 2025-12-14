@@ -197,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 41377495}
   - component: {fileID: 41377494}
+  - component: {fileID: 41377496}
   m_Layer: 13
   m_Name: Post Process Volume
   m_TagString: Untagged
@@ -236,6 +237,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &41377496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41377493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d5cc8437dfc2248809646db30bb731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkDuration: 5
 --- !u!1 &88453600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3930,8 +3944,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1593835519
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.36862746}
+    rgba: 2046820351
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.4745098}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5049,6 +5063,7 @@ MonoBehaviour:
   finalScoreText: {fileID: 869257068}
   ambientSound: {fileID: 1974788505}
   heartbeatSound: {fileID: 186436456}
+  postProcessing: {fileID: 41377496}
 --- !u!82 &1770054777
 AudioSource:
   m_ObjectHideFlags: 0

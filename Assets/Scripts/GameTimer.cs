@@ -8,12 +8,14 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private AudioSource ambientSound;
     [SerializeField] private AudioSource heartbeatSound;
-    private AudioSource audioSource;
+    [SerializeField] private PostProcessing postProcessing;
 
+    private AudioSource audioSource;
     private float gameDuration = 20f;
     private float timeRemaining;
     private TextMeshProUGUI timerText;
     private bool isGameOver = false;
+    private bool hasBlinked = false;
 
     void Start()
     {
@@ -26,9 +28,11 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         timeRemaining -= Time.deltaTime;
+        timerText.text = "Time left: " + timeRemaining.ToString("F2");
         // gradually increase heartbeat volume
         heartbeatSound.volume = Mathf.Clamp01((gameDuration - timeRemaining) / gameDuration);
 
+        // check for game over
         if (timeRemaining < 0)
         {
             timeRemaining = 0f;
@@ -40,7 +44,12 @@ public class GameTimer : MonoBehaviour
             }
         }
 
-        timerText.text = "Time left: " + timeRemaining.ToString("F2");
+        // blink around 10 seconds left
+        if (timeRemaining <= 10f && !hasBlinked)
+        {
+            // postProcessing.Blink();
+            hasBlinked = true;
+        }
     }
 
     private void EndGame()
