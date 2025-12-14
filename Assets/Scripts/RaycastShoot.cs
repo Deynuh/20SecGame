@@ -7,10 +7,10 @@ public class RaycastShoot : MonoBehaviour
     public float fireRate = 0.1f;
     public float damage = 5f;
     public float hitForce = 100f;
+    [SerializeField] private GameObject[] shootLines;
 
     private Camera fpsCam;
     private AudioSource shootAudio;
-    private LineRenderer shootLine;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
     private float nextFire; // time when player can fire again
 
@@ -18,7 +18,6 @@ public class RaycastShoot : MonoBehaviour
     {
         fpsCam = GetComponentInParent<Camera>();
         shootAudio = GetComponent<AudioSource>();
-        shootLine = GetComponent<LineRenderer>();
     }
 
     void Update()
@@ -30,39 +29,29 @@ public class RaycastShoot : MonoBehaviour
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, fpsCam.nearClipPlane));
             Vector3 lineStart = gameObject.transform.position;
             Vector3 shootDirection = fpsCam.transform.forward;
-
+            Vector3 targetPosition;
             RaycastHit hit;
-            shootLine.SetPosition(0, lineStart);
 
             if (Physics.Raycast(rayOrigin, shootDirection, out hit, range))
             {
-                shootLine.SetPosition(1, hit.point);
-
-                ShootableEnemy enemy = hit.collider.GetComponent<ShootableEnemy>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(damage);
-                }
-
-                if (hit.rigidbody != null)
-                {
-                    hit.rigidbody.AddForce(-hit.normal * hitForce);
-                }
+                targetPosition = hit.point;
             }
             else
             {
-                shootLine.SetPosition(1, rayOrigin + (shootDirection * range));
+                targetPosition = lineStart + shootDirection * range;
             }
 
-            StartCoroutine(Shoot());
+            GameObject shootLineObj = GetRandomShootLine();
+            GameObject instance = Instantiate(shootLineObj, lineStart, Quaternion.LookRotation(shootDirection));
+            instance.GetComponent<MoveShootLine>().targetPosition = targetPosition;
+
+            shootAudio.Play();
         }
     }
 
-    private IEnumerator Shoot()
+    private GameObject GetRandomShootLine()
     {
-        shootAudio.Play();
-        shootLine.enabled = true;
-        yield return shotDuration;
-        shootLine.enabled = false;
+        int index = Random.Range(0, shootLines.Length);
+        return shootLines[index].gameObject;
     }
 }

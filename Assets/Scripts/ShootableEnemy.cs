@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ShootableEnemy : MonoBehaviour
 {
-    public float health = 5f;
     public float moveSpeed = 2f;
     public GameObject deathSmokePrefab;
     public GameObject scorePopupPrefab;
@@ -28,16 +27,12 @@ public class ShootableEnemy : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage()
     {
-        health -= amount;
+        GameScore.Instance.AddScore(1);
+        ShowScorePopup("+1", Color.green);
+        Die();
 
-        if (health <= 0f)
-        {
-            GameScore.Instance.AddScore(1);
-            ShowScorePopup("+1", Color.green);
-            Die();
-        }
     }
     void OnCollisionEnter(Collision collision)
     {

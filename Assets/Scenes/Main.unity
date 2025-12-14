@@ -3744,10 +3744,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20e1825e53cee641b30d77db6db5a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 100
   fireRate: 0.2
   damage: 5
   hitForce: 100
+  shootLines:
+  - {fileID: 3656628246638518799, guid: db382d66f599f2147a6799196fb00e38, type: 3}
+  - {fileID: 3656628246638518799, guid: bacd43da4128c8542bca2d0052cfb6a0, type: 3}
+  - {fileID: 3656628246638518799, guid: 7bdf5f12fe2386e4b832ef853a5e620c, type: 3}
+  - {fileID: 3656628246638518799, guid: 0824d06cbf5ac0340ae5e15ebdff671e, type: 3}
 --- !u!1 &1123015781
 GameObject:
   m_ObjectHideFlags: 0
