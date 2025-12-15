@@ -13,6 +13,7 @@ public class RaycastShoot : MonoBehaviour
     private AudioSource shootAudio;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
     private float nextFire; // time when player can fire again
+    private bool shootingEnabled = false;
 
     void Start()
     {
@@ -20,8 +21,15 @@ public class RaycastShoot : MonoBehaviour
         shootAudio = GetComponent<AudioSource>();
     }
 
+    public void EnableShooting()
+    {
+        shootingEnabled = true;
+    }
+
     void Update()
     {
+        if (!shootingEnabled) return;
+
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;

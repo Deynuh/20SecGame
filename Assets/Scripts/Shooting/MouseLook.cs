@@ -5,17 +5,18 @@ public class MouseLook : MonoBehaviour
     private float mouseSensitivity = 500f;
     private float currentVerticalRotation;
     private float currentHorizontalRotation;
+    private bool lookEnabled = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void EnableLook()
     {
-        // locks cursor to center of screen
+        lookEnabled = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (!lookEnabled) return;
+
         // calculate new rotations
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

@@ -21,16 +21,21 @@ public class SpawnManager : MonoBehaviour
     private float nextSpawnTime;
     private float startFastSpawn = 13f;
     private float gameTimer = 0f;
+    private bool spawningActive = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StartSpawing()
     {
+        spawningActive = true;
+        timeSinceLastSpawn = 0f;
+        gameTimer = 0f;
         nextSpawnTime = Random.Range(minInterval, maxInterval);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!spawningActive) return;
+
         gameTimer += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
 

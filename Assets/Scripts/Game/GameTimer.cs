@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameTimer : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject startPanel;
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private AudioSource ambientSound;
     [SerializeField] private AudioSource heartbeatSound;
-    [SerializeField] private PostProcessing postProcessing;
 
     private AudioSource audioSource;
     private float gameDuration = 20f;
@@ -16,17 +16,27 @@ public class GameTimer : MonoBehaviour
     private TextMeshProUGUI timerText;
     private bool isGameOver = false;
     private bool hasBlinked = false;
+    private bool timerStarted = false;
 
     void Start()
     {
         timerText = GetComponent<TextMeshProUGUI>();
-        timeRemaining = gameDuration;
-        Time.timeScale = 1f; // ensures game is running
+        // Time.timeScale = 1f; // ensures game is running
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void BeginGame()
+    {
+        startPanel.SetActive(false);
+        timeRemaining = gameDuration;
+        timerStarted = true;
+        Time.timeScale = 1f;
     }
 
     void Update()
     {
+        if (!timerStarted || isGameOver) return;
+
         timeRemaining -= Time.deltaTime;
         timerText.text = "Time left: " + timeRemaining.ToString("F2");
         // gradually increase heartbeat volume
@@ -42,13 +52,6 @@ public class GameTimer : MonoBehaviour
                 isGameOver = true;
                 EndGame();
             }
-        }
-
-        // blink around 10 seconds left
-        if (timeRemaining <= 10f && !hasBlinked)
-        {
-            // postProcessing.Blink();
-            hasBlinked = true;
         }
     }
 
