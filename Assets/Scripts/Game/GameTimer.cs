@@ -19,6 +19,8 @@ public class GameTimer : MonoBehaviour
     private bool isGameOver = false;
     private bool timerStarted = false;
     private string playerName;
+    private static string savedPlayerName;
+    private static bool restartFlag = false;
 
     void Start()
     {
@@ -26,6 +28,13 @@ public class GameTimer : MonoBehaviour
         // Time.timeScale = 1f; // ensures game is running
         audioSource = GetComponent<AudioSource>();
         submitButton.SetActive(false);
+
+        if (restartFlag && !string.IsNullOrEmpty(savedPlayerName))
+        {
+            playerName = savedPlayerName;
+            BeginGame();
+            restartFlag = false;
+        }
     }
 
     public void BeginGame()
@@ -33,7 +42,7 @@ public class GameTimer : MonoBehaviour
         if (string.IsNullOrWhiteSpace(playerName))
         {
             Debug.LogWarning("Please enter your name before starting!");
-            // show UI warning 
+            // show UI warning ?
             return;
         }
         heartbeatSound.Play();
@@ -41,6 +50,16 @@ public class GameTimer : MonoBehaviour
         timeRemaining = gameDuration;
         timerStarted = true;
         Time.timeScale = 1f;
+
+        MouseLook mouseLook = FindFirstObjectByType<MouseLook>();
+        mouseLook.EnableLook();
+
+        RaycastShoot raycastShoot = FindFirstObjectByType<RaycastShoot>();
+        raycastShoot.EnableShooting();
+
+        SpawnManager spawnManager = FindFirstObjectByType<SpawnManager>();
+        spawnManager.StartSpawning();
+
     }
 
     public void OnNameEntered(string name)
@@ -92,6 +111,8 @@ public class GameTimer : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f; // unfreeze time
+        restartFlag = true;
+        savedPlayerName = playerName;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

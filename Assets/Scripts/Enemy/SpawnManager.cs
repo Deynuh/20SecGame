@@ -23,7 +23,7 @@ public class SpawnManager : MonoBehaviour
     private float gameTimer = 0f;
     private bool spawningActive = false;
 
-    public void StartSpawing()
+    public void StartSpawning()
     {
         spawningActive = true;
         timeSinceLastSpawn = 0f;
