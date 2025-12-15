@@ -61,7 +61,7 @@ public class GameTimer : MonoBehaviour
 
         int finalScore = GameScore.Instance.GetScore();
 
-        finalScoreText.text = "Final Score: " + finalScore;
+        finalScoreText.text = "Your Score: " + finalScore;
         gameOverPanel.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
