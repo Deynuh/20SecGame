@@ -9,28 +9,45 @@ public class GameTimer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private AudioSource ambientSound;
     [SerializeField] private AudioSource heartbeatSound;
+    [SerializeField] private Leaderboard leaderboard;
+    [SerializeField] private GameObject submitButton;
 
     private AudioSource audioSource;
     private float gameDuration = 20f;
     private float timeRemaining;
     private TextMeshProUGUI timerText;
     private bool isGameOver = false;
-    private bool hasBlinked = false;
     private bool timerStarted = false;
+    private string playerName;
 
     void Start()
     {
         timerText = GetComponent<TextMeshProUGUI>();
         // Time.timeScale = 1f; // ensures game is running
         audioSource = GetComponent<AudioSource>();
+        submitButton.SetActive(false);
     }
 
     public void BeginGame()
     {
+        if (string.IsNullOrWhiteSpace(playerName))
+        {
+            Debug.LogWarning("Please enter your name before starting!");
+            // show UI warning 
+            return;
+        }
+        heartbeatSound.Play();
         startPanel.SetActive(false);
         timeRemaining = gameDuration;
         timerStarted = true;
         Time.timeScale = 1f;
+    }
+
+    public void OnNameEntered(string name)
+    {
+        playerName = name.Trim();
+        submitButton.SetActive(!string.IsNullOrWhiteSpace(playerName));
+        Debug.Log("Player name set to: " + playerName);
     }
 
     void Update()
@@ -65,6 +82,7 @@ public class GameTimer : MonoBehaviour
         int finalScore = GameScore.Instance.GetScore();
 
         finalScoreText.text = "Your Score: " + finalScore;
+        leaderboard.SetLeaderboardEntry(playerName, finalScore);
         gameOverPanel.SetActive(true);
 
         Cursor.lockState = CursorLockMode.None;
