@@ -115,4 +115,9 @@ public class GameTimer : MonoBehaviour
         savedPlayerName = playerName;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
